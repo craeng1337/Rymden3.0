@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= user.name %></h1>
+        <p>Nickname: <%= user.nickname %></p>
+        <p>Age: <%= user.age %></p>
+        <p>Bio:</p>
+<pre><%= user.bio %></pre>
+
+
+    <a href="/edit?id=<%= user.id %>">Edit user</a>
+    <a href="/">Go to users</a>
+    
+    
+</body>
+</html>

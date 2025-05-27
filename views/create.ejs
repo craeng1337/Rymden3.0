@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create user</h1>
+
+<form action="/create" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required><br><br>
+    <label for="nickname">Nickname:</label>
+    <input type="text" name="nickname" id="nickname" required><br><br>
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required><br><br>
+    <label for="bio">Bio:</label>
+    <textarea name="bio" id="bio" rows="5" cols="40" required></textarea><br><br>
+
+    
+
+
+    <button type="submit">Save</button><br><br><br><br>
+    <a href="/">Go to users</a><br><br>
+</form>
+    
+</body>
+</html>
