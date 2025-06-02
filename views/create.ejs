@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <div class="stars">
+    <% 
+    var anims = ['blinkStar', 'blinkStarAlt', 'blinkStarSoft', 'blinkStarPulse'];
+    for (var i = 0; i < 100; i++) {
+      var top = Math.random() * 100;
+      var left = Math.random() * 100;
+      var anim = anims[Math.floor(Math.random() * anims.length)];
+      var duration = (Math.random() * 3 + 2).toFixed(2); // 2–5 sek
+      var delay = (Math.random() * 5).toFixed(2); // upp till 5 sek
+      var size = (Math.random() * 2 + 1).toFixed(1); // 1.0–3.0 px
+  %>
+    <div 
+      class="star" 
+      style="
+        top:<%= top %>vh;
+        left:<%= left %>vw;
+        animation-name:<%= anim %>;
+        animation-duration:<%= duration %>s;
+        animation-delay:<%= delay %>s;
+        width:<%= size %>px;
+        height:<%= size %>px;
+      ">
+    </div>
+  <% } %>
+
+</div>
+
+
     <h1>Create user</h1>
 
 <form action="/create" method="POST">
@@ -16,6 +47,11 @@
     <input type="text" name="nickname" id="nickname" required><br><br>
     <label for="age">Age:</label>
     <input type="number" name="age" id="age" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required><br><br>
+    <label for="phone">Phone:</label>
+    <input type="number" name="phone" id="phone" required><br><br>
+
     <label for="bio">Bio:</label>
     <textarea name="bio" id="bio" rows="5" cols="40" required></textarea><br><br>
 

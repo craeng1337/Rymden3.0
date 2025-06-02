@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet" href="/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <div class="stars">
+  <% 
+    var anims = ['blinkStar', 'blinkStarAlt', 'blinkStarSoft', 'blinkStarPulse'];
+    var colors = ['#ffffff', '#9bf6ff', '#00fff7', '#ffd6a5', '#caffbf', '#ffadad']; // vit, blå, cyan, orange, lime, rosa
+
+    for (var i = 0; i < 100; i++) {
+      var top = Math.random() * 100;
+      var left = Math.random() * 100;
+      var anim = anims[Math.floor(Math.random() * anims.length)];
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var duration = (Math.random() * 3 + 2).toFixed(2);
+      var delay = (Math.random() * 5).toFixed(2);
+      var size = (Math.random() * 2 + 1).toFixed(1);
+  %>
+    <div 
+      class="star" 
+      style="
+        top:<%= top %>vh;
+        left:<%= left %>vw;
+        animation-name:<%= anim %>;
+        animation-duration:<%= duration %>s;
+        animation-delay:<%= delay %>s;
+        width:<%= size %>px;
+        height:<%= size %>px;
+        background:<%= color %>;
+      ">
+    </div>
+  <% } %>
+</div>
+
+
     <h1>All users</h1>
-<ul>
+<ul class="user-list">
   <% users.forEach(user => { %>
     <li>
-      <a href="/user?id=<%= user.id %>"><%= user.name %></a>
-      <form action="/delete" method="POST" style="display:inline;">
-  <input type="hidden" name="id" value="<%= user.id %>">
-  <button type="submit" onclick="return confirm('Delete user?')">x</button>
-</form>
+      <div class="user-row">
+        <span class="username">
+          <a href="/user?id=<%= user.id %>"><%= user.name %></a>
+        </span>
 
+        <form action="/delete" method="POST" style="display:inline;" class="delete-form">
+          <input type="hidden" name="id" value="<%= user.id %>">
+          <button type="submit" onclick="return confirm('Delete user?')">x</button>
+        </form>
+      </div>
     </li>
   <% }) %>
 </ul>

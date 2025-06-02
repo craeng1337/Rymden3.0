@@ -1,10 +1,11 @@
 const db = require('./database');
 
-async function updateUser({ id, name, nickname, age, bio }) {
-  const sql = 'UPDATE users SET name = ?, nickname = ?, age = ?, bio = ? WHERE id = ?';
-  const values = [name, nickname, age, bio, id];
+async function updateUser({ id, name, nickname, age, bio, email, phone }) {
+  const sql = 'UPDATE users SET name = ?, nickname = ?, age = ?, bio = ?, email = ?, phone = ? WHERE id = ?';
+  const values = [name, nickname, age, bio, email, phone, id];
   await db.query(sql, values);
 }
+
 
 
 async function getAllUsers() {
@@ -12,11 +13,12 @@ async function getAllUsers() {
   return rows;
 }
 
-async function createUser({ name, nickname, age, bio }) {
-  const sql = 'INSERT INTO users (name, nickname, age, bio) VALUES (?, ?, ?, ?)';
-  const values = [name, nickname, age, bio];
+async function createUser({ name, nickname, age, bio, email, phone }) {
+  const sql = 'INSERT INTO users (name, nickname, age, bio, email, phone) VALUES (?, ?, ?, ?, ?, ?)';
+  const values = [name, nickname, age, bio, email, phone];
   await db.query(sql, values);
 }
+
 
 async function getUserById(id) {
   const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [id]);
