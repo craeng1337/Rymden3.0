@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-// Skapa en anslutningspool
+// Ersus anslutningspool
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
