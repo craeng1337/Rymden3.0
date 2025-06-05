@@ -1,65 +1,68 @@
-# Rymden3.0
-# Ersus – Fullstack CRUD-applikation
 
-Detta är ett skolprojekt i kursen **Testverktyg**, där vi bygger en webbapplikation med fokus på databashantering, formulärflöden och testbar serverlogik.
+# Ersus – Web-app
 
-## 🧱 Teknikstack
+Ersus är en enkel Node.js-applikation byggd med Express och EJS. Den låter dig skapa, visa, redigera och ta bort användare via ett webbgränssnitt.
 
-- **Node.js + Express** – server
-- **EJS** – templatemotor för views
-- **MySQL** – databas (via mysql2)
-- **HTML + CSS** – formulär och frontend
-- **Git** – versionshantering
+# Funktioner
 
-## 🔁 Funktioner
+- Lista alla användare
+- Visa detaljer om en användare
+- Skapa ny användare
+- Uppdatera befintlig användare
+- Radera användare
+- Integrationstester med Jest och Supertest, e2e-tester med PlayWright
 
-- ✅ Skapa användare
-- ✅ Lista alla användare
-- ✅ Visa profilsida
-- ✅ Redigera användare
-- ✅ Ta bort användare
-- ✅ Validering av ålder i formulär
+# Kom igång
 
-## 🧪 Testbar kodstruktur
+# 1. Öppna mappen i tex VScode
 
-All datalogik är separerad i:
-- `database.js` – hanterar SQL-frågor
-- `logic.js` – innehåller funktioner som kan testas separat
+# 2. Installera node moduler
 
-## 🚀 Så här kör du projektet
+```bash
+npm install
+```
 
-1. Klona repot:
-   ```bash
-   git clone https://github.com/craeng1337/Rymden3.0.git
-   cd Rymden3.0
+# 3. Starta applikationen
 
-2. ```bash
-   npm install
+```bash
+node server.js
+```
 
-3. ```sql
-   CREATE DATABASE ersus_db;
+Applikationen körs nu på:  
+[http://localhost:3000](http://localhost:3000)
 
-USE ersus_db;
+---
 
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(250),
-  nickname VARCHAR(250),
-  age INT,
-  bio TEXT
-);
+# Användning
 
-4. ```bash
-   node server.js
+- Öppna localhost:3000 för att se alla användare.
+- Använd länken “Create user” för att lägga till en ny.
+- Klicka på “View users” för att se detaljer om en användare.
+- Klicka på “Edit user” för att uppdatera information.
+- Klicka på “Delete user” för att ta bort användaren.
+
+---
+
+# Testning
+
+Applikationen är testad med **Jest**, **Supertest** och **Playwright**
+
+# 1. Kör alla tester:
+
+```bash
+npm run test  (integrationstester med Jest)
+npm run test:e2e   (end to end tester med Playwright)
+```
+
+Testerna hittar du i mappen `__tests__/` och täcker:
+
+- GET /
+- GET /user?id=...
+- POST /create
+- POST /edit
+- POST /delete
+
+---
 
 
-Gå till:
-http://localhost:3000
-
-
-Projektmedlemmar:
-
-Susanna Wiland
-Erik Molander
-
-
+Have fun

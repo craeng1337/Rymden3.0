@@ -11,15 +11,18 @@
 </head>
 <body>
     <div class="stars">
-    <% 
+  <% 
     var anims = ['blinkStar', 'blinkStarAlt', 'blinkStarSoft', 'blinkStarPulse'];
+    var colors = ['#ffffff', '#9bf6ff', '#00fff7', '#ffd6a5', '#caffbf', '#ffadad']; // vit, blå, cyan, orange, lime, rosa
+
     for (var i = 0; i < 100; i++) {
       var top = Math.random() * 100;
       var left = Math.random() * 100;
       var anim = anims[Math.floor(Math.random() * anims.length)];
-      var duration = (Math.random() * 3 + 2).toFixed(2); // 2–5 sek
-      var delay = (Math.random() * 5).toFixed(2); // upp till 5 sek
-      var size = (Math.random() * 2 + 1).toFixed(1); // 1.0–3.0 px
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var duration = (Math.random() * 3 + 2).toFixed(2);
+      var delay = (Math.random() * 5).toFixed(2);
+      var size = (Math.random() * 2 + 1).toFixed(1);
   %>
     <div 
       class="star" 
@@ -31,11 +34,12 @@
         animation-delay:<%= delay %>s;
         width:<%= size %>px;
         height:<%= size %>px;
+        background:<%= color %>;
       ">
     </div>
   <% } %>
-
 </div>
+
 
 
     <h1>Create user</h1>

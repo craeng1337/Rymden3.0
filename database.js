@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 
-// Skapa en anslutningspool
+// Ersus anslutningspool
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'root', // eller ditt riktiga lösenord
+  password: 'root', 
   database: 'ersus_db'
 });
 
