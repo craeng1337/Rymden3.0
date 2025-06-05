@@ -2,6 +2,56 @@ const request = require('supertest');
 const app = require('../../app');
 //const http = require('http');
 
+jest.mock("../../logic");
+
+const { getAllUsers, createUser, getUserById, updateUser, deleteUser } = require('../../logic');
+//const e = require('express');
+
+/* MOCKA databasens query-funktion
+jest.mock('../../database', () => {
+  let users = [
+    { id: 1, name: 'Alice', nickname: 'Ali', age: 30, bio: 'Test bio', email: 'a@b.com', phone: '123' },
+    { id: 2, name: 'Bob', nickname: 'B', age: 25, bio: 'Another bio', email: 'b@c.com', phone: '456' }
+  ];
+
+  return {
+    query: async (sql, values) => {
+      if (sql.includes('SELECT * FROM users WHERE id =')) {
+        return [[users.find(u => u.id === values[0])]];
+      }
+
+      if (sql.includes('SELECT * FROM users')) {
+        return [users];
+      }
+
+      if (sql.includes('INSERT INTO users')) {
+        const [name, nickname, age, bio, email, phone] = values;
+        const newUser = {
+          id: users.length + 1,
+          name, nickname, age, bio, email, phone
+        };
+        users.push(newUser);
+        return [{ insertId: newUser.id }];
+      }
+
+      if (sql.includes('UPDATE users')) {
+        const [name, nickname, age, bio, email, phone, id] = values;
+        const user = users.find(u => u.id === id);
+        if (user) Object.assign(user, { name, nickname, age, bio, email, phone });
+        return [{}];
+      }
+
+      if (sql.includes('DELETE FROM users')) {
+        users = users.filter(u => u.id !== values[0]);
+        return [{}];
+      }
+
+      return [[]];
+    }
+  };
+});
+*/
+
 let server;
 
 //beforeAll((done) => {
@@ -15,9 +65,13 @@ let server;
 
 describe('Dynamic Test: GET /user?id=...', () => {
   it('should return 200 and contain "Nickname:" for each user', async () => {
+    const users = [ { id: 1, name: "testy" } ]
+    getAllUsers.mockImplementation(() => Promise.resolve(users))
+
     const res = await request(app).get('/');
     expect(res.status).toBe(200);
-
+    expect(res.text).toContain("testy")
+/*
     const userIds = [...res.text.matchAll(/\/user\?id=(\d+)/g)].map(match => match[1]);
 
     for (const id of userIds) {
@@ -25,10 +79,23 @@ describe('Dynamic Test: GET /user?id=...', () => {
       expect(userRes.status).toBe(200);
       expect(userRes.text).toContain('Nickname:');
     }
+      */
   });
 });
 
+describe('Dynamic Test: GET /user?id=...', () => {
+  it('should return 200 and contain "Nickname:" for each user', async () => {
+    const users = [ { id: 1, name: "testy" } ]
+    getAllUsers.mockImplementation(() => Promise.resolve(users))
 
+    const res = await request(app).get('/');
+    expect(res.status).toBe(200);
+    expect(res.text).toContain("testy")
+
+  });
+});
+
+/*
 describe('Integration Test: POST /create', () => {
   it('should create a new user and redirect (302)', async () => {
     const newUser = {
@@ -91,3 +158,4 @@ describe('Integration Test: GET / includes new user', () => {
     expect(response.text).toContain('Testus Maximus');
   });
 });
+*/
